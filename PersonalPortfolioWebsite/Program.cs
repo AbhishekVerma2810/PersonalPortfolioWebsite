@@ -1,3 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using PersonalPortfolioWebsite.Layer_Business;
+using PersonalPortfolioWebsite.Layer_Business.Interfaces;
+using PersonalPortfolioWebsite.Layer_Data;
+using PersonalPortfolioWebsite.Layer_Data.Repositories;
+using PersonalPortfolioWebsite.Layer_Data.Repositories.Interfaces;
+
 namespace PersonalPortfolioWebsite
 {
     public class Program
@@ -8,6 +15,10 @@ namespace PersonalPortfolioWebsite
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<PortfolioDbContext>(option => option.UseSqlite("Data Source=portfolio.db"));
+            builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+            builder.Services.AddScoped<IProjectService, ProjectService>();
 
             var app = builder.Build();
 

@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "My Projects";
+}
+
+@model IEnumerable<Project>
+
+<div class="text-center">
+    <h2>My Projects</h2>
+    <a class="btn" asp-controller="Projects" asp-action="Create">Add</a>
+    <div class="row">
+        @foreach (var project in Model)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@project.Name</h5>
+                        <p class="card-text">@project.Description</p>
+                        <p class="card-text">@project.RoleAndResponsibility</p>
+                        <p><strong>Tech Used:</strong> @project.SkillsUsed</p>
+                        <a href="@project.ProjectUrl" class="btn btn-primary" target="_blank">View Project</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
