@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Add Project";
+}
+
+@model Project
+
+<h2>Add a New Project</h2>
+<form asp-action="Create" asp-controller="Projects" method="post">
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" asp-for="Name" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea asp-for="Description" class="form-control" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="RoleAndResponsibility">Role And Responsibility</label>
+        <input type="text" asp-for="RoleAndResponsibility" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="SkillsUsed">Technologies Used</label>
+        <input type="text" asp-for="SkillsUsed" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="ProjectUrl">Project URL</label>
+        <input type="text" asp-for="ProjectUrl" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="StartDate">Start Date</label>
+        <input type="date" asp-for="StartDate" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="EndDate">End Date</label>
+        <input type="date" asp-for="EndDate" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-2">Save Project</button>
+</form>
