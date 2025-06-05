@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalPortfolioWebsite.Layer_Data;
 
@@ -10,9 +11,11 @@ using PersonalPortfolioWebsite.Layer_Data;
 namespace PersonalPortfolioWebsite.Migrations
 {
     [DbContext(typeof(PortfolioDbContext))]
-    partial class PortfolioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250605112114_AddExperienceTable")]
+    partial class AddExperienceTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.5");
@@ -61,9 +64,6 @@ namespace PersonalPortfolioWebsite.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ExperienceId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -85,19 +85,7 @@ namespace PersonalPortfolioWebsite.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExperienceId");
-
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("PersonalPortfolioWebsite.Models.Project", b =>
-                {
-                    b.HasOne("PersonalPortfolioWebsite.Models.Experience", "Experience")
-                        .WithMany()
-                        .HasForeignKey("ExperienceId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Experience");
                 });
 #pragma warning restore 612, 618
         }

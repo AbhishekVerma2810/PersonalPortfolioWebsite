@@ -10,5 +10,10 @@
         public List<string> SkillsUsed { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        // Foreign key
+        public int? ExperienceId { get; set; }
+        // Navigation Property
+        public Experience? Experience { get; set; }
     }
 }

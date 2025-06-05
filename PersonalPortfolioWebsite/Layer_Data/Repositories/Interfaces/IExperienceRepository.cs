@@ -2,8 +2,8 @@
 
 namespace PersonalPortfolioWebsite.Layer_Data.Repositories.Interfaces
 {
-    public interface IProjectRepository : IRepository<Project>
+    public interface IExperienceRepository : IRepository<Experience>
     {
-        
+
     }
 }

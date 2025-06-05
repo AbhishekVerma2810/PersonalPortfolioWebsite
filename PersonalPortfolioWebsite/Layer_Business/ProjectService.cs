@@ -15,12 +15,22 @@ namespace PersonalPortfolioWebsite.Layer_Business
 
         public void AddProject(Project project)
         {
-            _project.AddProject(project);
+            _project.Add(project);
+        }
+
+        public Project GetProject(int id)
+        {
+            return _project.GetById(id);
         }
 
         public IEnumerable<Project> GetProjects()
         {
-            return _project.GetAllProjects();
+            return _project.GetAll();
+        }
+
+        public void UpdateProject(Project project)
+        {
+            _project.Update(project);
         }
     }
 }

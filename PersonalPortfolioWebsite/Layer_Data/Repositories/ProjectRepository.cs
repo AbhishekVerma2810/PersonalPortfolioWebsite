@@ -12,15 +12,15 @@ namespace PersonalPortfolioWebsite.Layer_Data.Repositories
             _dbContext = dbContext;
         }
 
-        public void AddProject(Project project)
+        public void Add(Project project)
         {
             _dbContext.Projects.Add(project);
             _dbContext.SaveChanges();
         }
 
-        public void DeleteProject(int id)
+        public void Delete(int id)
         {
-            var project = GetProjectById(id);
+            var project = GetById(id);
 
             if (project != null)
             {
@@ -29,14 +29,20 @@ namespace PersonalPortfolioWebsite.Layer_Data.Repositories
             }
         }
 
-        public IEnumerable<Project> GetAllProjects()
+        public IEnumerable<Project> GetAll()
         {
             return _dbContext.Projects.AsEnumerable();
         }
 
-        public Project GetProjectById(int id)
+        public Project GetById(int id)
         {
             return _dbContext.Projects.Find(id);
+        }
+
+        public void Update(Project entity)
+        {
+            _dbContext.Projects.Update(entity);
+            _dbContext.SaveChanges();
         }
     }
 }

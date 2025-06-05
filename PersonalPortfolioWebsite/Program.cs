@@ -20,6 +20,9 @@ namespace PersonalPortfolioWebsite
             builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
             builder.Services.AddScoped<IProjectService, ProjectService>();
 
+            builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
+            builder.Services.AddScoped<IExperienceService, ExperienceService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
