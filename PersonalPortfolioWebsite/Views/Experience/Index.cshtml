@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "My Experience";
+}
+
+@model IEnumerable<Experience>
+
+<h2>My Work Experience</h2>
+<div class="row">
+    @foreach (var experience in Model)
+    {
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <a asp-action="Edit" asp-controller="Experience" asp-route-id="@experience.Id" class="btn btn-warning">Edit</a>
+                    <h5>@experience.Role at @experience.CompanyName</h5>
+                    <p><strong>Location:</strong> @experience.Location</p>
+                    <p><strong>Duration:</strong> @(experience.StartDate.ToString("MMM yyyy")) - @(experience.EndDate.HasValue ? experience.EndDate.Value.ToString("MMM yyyy") : "Present")</p>
+                    <p>@experience.Description</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<a asp-action="Create" asp-controller="Experience" class="btn btn-primary">Add Experience</a>

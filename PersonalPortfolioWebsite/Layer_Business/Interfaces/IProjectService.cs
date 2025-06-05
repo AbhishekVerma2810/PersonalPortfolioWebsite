@@ -6,5 +6,7 @@ namespace PersonalPortfolioWebsite.Layer_Business.Interfaces
     {
         IEnumerable<Project> GetProjects();
         void AddProject(Project project);
+        void UpdateProject(Project project);
+        Project GetProject(int id);
     }
 }

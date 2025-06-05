@@ -1,43 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using PersonalPortfolioWebsite.Layer_Business;
 using PersonalPortfolioWebsite.Layer_Business.Interfaces;
 using PersonalPortfolioWebsite.Models;
 
 namespace PersonalPortfolioWebsite.Controllers
 {
-    public class ProjectsController : Controller
+    public class ExperienceController : Controller
     {
-        private readonly ILogger<ProjectsController> _logger;
-        private readonly IProjectService _projectService;
+        private readonly ILogger<ExperienceController> _logger;
         private readonly IExperienceService _experienceService;
 
-        public ProjectsController(ILogger<ProjectsController> logger, IProjectService projectService, IExperienceService experienceService)
+        public ExperienceController(ILogger<ExperienceController> logger, IExperienceService experienceService)
         {
             _logger = logger;
-            _projectService = projectService;
             _experienceService = experienceService;
         }
 
         public IActionResult Index()
         {
-            var projects = _projectService.GetProjects();
-            return View(projects);
+            var experiences = _experienceService.GetExperiences();
+            return View(experiences);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Experiences = new SelectList(_experienceService.GetExperiences(), "Id", "CompanyName");
-
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Project project)
+        public IActionResult Create(Experience experience)
         {
             if (ModelState.IsValid)
             {
-                _projectService.AddProject(project);
+                _experienceService.AddExperience(experience);
                 return RedirectToAction("Index");
             }
             return BadRequest();
@@ -46,22 +42,22 @@ namespace PersonalPortfolioWebsite.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var project = _projectService.GetProject(id);
-            if (project == null)
+            var experience = _experienceService.GetExperience(id);
+            if (experience == null)
                 return NotFound();
 
-            return View(project);
+            return View(experience);
         }
 
         [HttpPost]
-        public IActionResult Edit(Project project)
+        public IActionResult Edit(Experience experience)
         {
             if (ModelState.IsValid)
             {
-                _projectService.UpdateProject(project);
+                _experienceService.UpdateExperience(experience);
                 return RedirectToAction("Index");
             }
-            return View(project);
+            return View(experience);
         }
     }
 }
